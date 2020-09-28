@@ -1,4 +1,5 @@
 import React, { useState, Fragment } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import './App.scss';
 
 const App = () => {
@@ -7,7 +8,6 @@ const App = () => {
 	};
 
 	const [ inputValue, setInputValue ] = useState('');
-	const [ cmd, setCmd ] = useState();
 	const [ history, setHistory ] = useState([`Hi there!`, `Type in the command.`, `Not sure? Type 'help' to see available commands`]);
 
   const commands = ['help', 'clear', 'intro', 'skills', 'programming', 'edu', 'contact'];
@@ -27,35 +27,35 @@ const App = () => {
       setHistory([ ...history, ...print ]);
     }
     
-    if (inputValue == 'help') {
+    if (inputValue === 'help') {
       const print = [ `robertgeica@dev:~$ ${inputValue}`, 'Available commands are: ', 'help', 'clear', 'intro', 'skills', 'programming', 'edu', 'contact' ];
 
       setHistory([ ...history, ...print ]);
     }
 
-    if (inputValue == 'clear') {
+    if (inputValue === 'clear') {
       setHistory([]);
     }
 
-		if (inputValue == 'intro') {
-			const print = [ `robertgeica@dev:~$ ${inputValue}`, `>_ intro`, `>_ dsada` ];
+		if (inputValue === 'intro') {
+			const print = [ `robertgeica@dev:~$ ${inputValue}`, `>_ intro`, `>_ dsada`, <h1>h1</h1> ];
 
 			setHistory([ ...history, ...print ]);
 		}
 
-		if (inputValue == 'skills') {
+		if (inputValue === 'skills') {
 			const print = [ `robertgeica@dev:~$ ${inputValue}`, `>_ my skills are`, `>_ js`, `>_ react`, `>_ nodejs` ];
 
 			setHistory([ ...history, ...print ]);
 		}
 
-    if (inputValue == 'edu') {
+    if (inputValue === 'edu') {
       const print = [ `robertgeica@dev:~$ ${inputValue}`, `>_ education` ];
 
       setHistory([ ...history, ...print ]);
     }
 
-    if (inputValue == 'contact') {
+    if (inputValue === 'contact') {
       const print = [ `robertgeica@dev:~$ ${inputValue}`, `>_ contact mail@mail.com` ];
 
       setHistory([ ...history, ...print ]);
@@ -68,7 +68,6 @@ const App = () => {
 		setInputValue(e.target.value);
 	};
 
-	console.log(history);
 	return (
 		<div className="App">
 			<div className="terminal-container">
@@ -81,9 +80,8 @@ const App = () => {
 				<div onClick={focusInput} className="terminal-cmds">
 
 					{history.map((h) => (
-						<Fragment>
-							<span className="cmd">{h}</span>
-							<br />
+						<Fragment key={uuidv4()}>
+							<span className="cmd" >{h}</span>
 						</Fragment>
 					))}
 

@@ -89,13 +89,25 @@ body {
 		background: none;
 		border: none;
 		padding: 0;
-		color: #23ff00 !important;
+		color: #fff;
 		outline: none;
 		margin-left: 10px;
 		font-size: 15px;
 	}
 
 	.cmd {
-		letter-spacing: .5px;
+
+		color: #fff;
 	}
 }
+
+a {
+	color: #fff;
+	&:hover {
+		color: #23ff00 !important;
+	}
+	&:visited, &:active {
+		color: #fff;
+	}
+}
+

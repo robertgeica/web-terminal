@@ -10,14 +10,14 @@ const App = () => {
 	const [ inputValue, setInputValue ] = useState('');
 	const [ history, setHistory ] = useState([`Hi there!`, `Type in the command.`, `Not sure? Type 'help' to see available commands`]);
 
-  const commands = ['help', 'clear', 'intro', 'skills', 'programming', 'edu', 'contact'];
+  const commands = ['help', 'clear', 'intro', 'skills', 'projects', 'edu', 'contact'];
 
 	const clearInput = () => {
 		setInputValue('');
 	};
 
 
-  // commands to add: intro, skills, programming, edu, contact, help, clear
+  // commands to add: intro, skills, projects, edu, contact, help, clear
 	const handleOnSubmit = (e) => {
 		e.preventDefault();
     
@@ -28,7 +28,7 @@ const App = () => {
     }
     
     if (inputValue === 'help') {
-      const print = [ `robertgeica@dev:~$ ${inputValue}`, 'Available commands are: ', 'help', 'clear', 'intro', 'skills', 'programming', 'edu', 'contact' ];
+      const print = [ <span>robertgeica@dev:~$ <span className="cmd">{inputValue}</span></span>, 'Available commands are: ', 'help', 'clear', 'intro', 'skills', 'projects', 'edu', 'contact' ];
 
       setHistory([ ...history, ...print ]);
     }
@@ -38,25 +38,74 @@ const App = () => {
     }
 
 		if (inputValue === 'intro') {
-			const print = [ `robertgeica@dev:~$ ${inputValue}`, `>_ intro`, `>_ dsada`, <h1>h1</h1> ];
+			const print = [ 
+				
+				<span>robertgeica@dev:~$ <span className="cmd">{inputValue}</span></span>,
+				`>_ Hi! I am Robert Geica.`, 
+				`>_ I am currently pursuing Bachelor's degree in Computer Science at University of Craiova, Romania`,
+				`>_ I am constantly looking to improve my programming skills`, 
+				`>_ I am open to work and collaborations`
+			];
 
 			setHistory([ ...history, ...print ]);
 		}
 
 		if (inputValue === 'skills') {
-			const print = [ `robertgeica@dev:~$ ${inputValue}`, `>_ my skills are`, `>_ js`, `>_ react`, `>_ nodejs` ];
+			const print = [ 
+				<span>robertgeica@dev:~$ <span className="cmd">{inputValue}</span></span>, 
+				`>_ I am confident working with JavaScript, React, Node.js, Express, Redux, Scss, HTML5/CSS3`, 
+				`>_ I am competent with MongoDb, MaterialUI, Bootstrap`, 
+				`>_ I am familiar with React Native, Java`, 
+				`>_ I am working with tools and apps such as Git, npm, yarn, Babel, Webpack, Postman, VSCode, MongoDB Compass`,
+				`>_ I prefer to work in a Linux environment`,
+				`>_ I can do basic tasks in Adobe Photoshop` 
+
+			];
 
 			setHistory([ ...history, ...print ]);
 		}
+		
+		if (inputValue === 'projects') {
+      const print = [ 
+				<span>robertgeica@dev:~$ <span className="cmd">{inputValue}</span></span>, 
+				<div>
+					<span>>_ </span> 
+					<a href="https://github.com/robertgeica/weekly">Weekly</a> 
+					<span>  a mern-stack weekly task planner</span>
+				</div>, 
+
+				<div>
+					<span>>_ </span> 
+					<a href="https://github.com/robertgeica/taskit">Taskit</a> 
+					<span>  a mern-stack trello like application</span>
+				</div>,
+			
+				`>_ You can check more of my work here:`,
+				<a href="http://github.com/robertgeica">github.com/robertgeica</a>
+			];
+
+      setHistory([ ...history, ...print ]);
+    }
 
     if (inputValue === 'edu') {
-      const print = [ `robertgeica@dev:~$ ${inputValue}`, `>_ education` ];
+      const print = [ 
+				<span>robertgeica@dev:~$ <span className="cmd">{inputValue}</span></span>, 
+				`>_ Bachelor's Degree in Computer Science`, 
+				`>_ University of Craiova`, 
+			];
 
       setHistory([ ...history, ...print ]);
     }
 
     if (inputValue === 'contact') {
-      const print = [ `robertgeica@dev:~$ ${inputValue}`, `>_ contact mail@mail.com` ];
+      const print = [ 
+				<span>robertgeica@dev:~$ <span className="cmd">{inputValue}</span></span>, 
+				`>_ Email: geicarobert@gmail.com`,
+				<div>
+					<span>>_ Github </span>
+					<a href="https://github.com/robertgeica">github.com/robertgeica</a>
+				</div>
+			];
 
       setHistory([ ...history, ...print ]);
     }
@@ -81,7 +130,7 @@ const App = () => {
 
 					{history.map((h) => (
 						<Fragment key={uuidv4()}>
-							<span className="cmd" >{h}</span>
+							<span>{h}</span>
 						</Fragment>
 					))}
 
